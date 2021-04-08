@@ -19,3 +19,13 @@ def remove_data_based_on_radius(data, mask_value=-1):
     data_maskradius[mask] = mask_value
     
     return data_maskradius
+
+def zscore(data):
+    
+    data_flat = data.flatten()
+    data_flat = data_flat[~np.isnan(data_flat)]
+    
+    mean = np.mean(data_flat)
+    std = np.std(data_flat)
+    
+    return (data - mean)/std
