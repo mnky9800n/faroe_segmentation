@@ -1,3 +1,5 @@
+*.png
+*.pdf
 __pycache__/
 benoitdata/
 bigdata/
