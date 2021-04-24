@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.signal import find_peaks
+import cv2
 
 def remove_data_based_on_radius(data, mask_value=-1):
     """
@@ -36,7 +37,8 @@ def get_peaks_means_stds(img, height, width):
     finds peaks in histogram across all values in image
     """
     h, e = np.histogram(img[~np.isnan(img)].flatten(), bins=1000)
-    peaks, other = find_peaks(h, height=height, width=width)
+#     peaks, other = find_peaks(h, height=height, width=width)
+    peaks, other = find_peaks(h, height=height, width=width, distance=50)
     means = e[peaks]
     stds = np.std(img[~np.isnan(img)].flatten())/3
     
@@ -56,3 +58,18 @@ def label_by_peaks(img, peaks):
         
 #     return helpers.remove_data_based_on_radius(zeros, mask_value=np.nan)
     return remove_data_based_on_radius(zeros, mask_value=np.nan)
+
+def fix_brightness(img):
+    """
+    Fixes shadowing issues
+    
+    https://stackoverflow.com/questions/44047819/increase-image-brightness-without-overflow/44054699#44054699
+    """
+    
+    dilated_img = cv2.dilate(img, np.ones((7, 7), np.uint8))
+    bg_img = cv2.medianBlur(dilated_img, 21)
+    diff_img = 255 - cv2.absdiff(img, bg_img)
+    norm_img = diff_img.copy()
+    cv2.normalize(diff_img, norm_img, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8UC1)
+    
+    return norm_img
