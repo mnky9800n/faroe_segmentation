@@ -6,7 +6,13 @@ from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 from skimage import exposure
 from scipy import ndimage
+import matplotlib.pyplot as plt
 
+def plot_image(img, cmap='plasma', **kwargs):
+    fig, ax = plt.subplots(figsize=(20, 20))
+    cbar = ax.imshow(img, cmap=cmap, **kwargs)
+    fig.colorbar(cbar)
+#     plt.close()
 
 def remove_data_based_on_radius(data, mask_value=-1):
     """
