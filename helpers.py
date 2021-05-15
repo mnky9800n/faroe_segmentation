@@ -7,6 +7,9 @@ from scipy.signal import argrelextrema
 from skimage import exposure
 from scipy import ndimage
 import matplotlib.pyplot as plt
+import pandas as pd
+from skimage.measure import label, regionprops_table, regionprops
+
 
 def plot_image(img, cmap='plasma', **kwargs):
     fig, ax = plt.subplots(figsize=(20, 20))
@@ -190,3 +193,4 @@ def label_pipeline(img):
     del frac_x, frac_y, ves_x, ves_y, imlabeled, newim, x1, y1, zim_remove, splitter, z, peak_labled, peaks_etc, blurs, imarr_hist, norm_img
     
     return zeros
+
