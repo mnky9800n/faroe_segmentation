@@ -112,7 +112,8 @@ def multi_figures(file):
 #     i_frac = remove_convex_area_eccentricity(i_frac)
     i_frac = remove_convex_area_eccentricity(i_frac, convex_area=60, eccentricity=0.2)
     
-    fig, ax = helpers.plot_image(img, cmap='Greys')
+#     fig, ax = helpers.plot_image(img, cmap='Greys')
+    fig, ax = helpers.plot_image(img, cmap='Greys', vmin=80, vmax=100)
     ax.imshow(i_ves, alpha=0.5, cmap='PRGn', interpolation='none')
     ax.imshow(i_frac, alpha=0.75, cmap='plasma_r', interpolation='none')
     fig.savefig('/media/sda/data/labeled/F20_10b/'+file[19:]+'_labeled.png', dpi=300, bbox_inches='tight')
