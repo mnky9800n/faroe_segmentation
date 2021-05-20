@@ -24,7 +24,7 @@ def label_fractures(img):
     return zeros
 
 def multi_figures(file):
-    img = cv2.imread(filename, 0)
+    img = cv2.imread(file, 0)
     zim = helpers.zscore(helpers.remove_data_based_on_radius(img, np.nan))
     labeled = label_fractures(zim)
     
@@ -35,17 +35,17 @@ def multi_figures(file):
 
     fig, ax = helpers.plot_image(img, cmap='Greys')
     ax.imshow(labeled, cmap='Purples_r', alpha=0.5)
-    fig.savefig('/media/sda/data/labeled/F20_11/'+file[19:]+'_labeled.png', dpi=300, bbox_inches='tight')
+    fig.savefig('/media/sda/data/labeled/F20_11/'+file[18:]+'_labeled.png', dpi=300, bbox_inches='tight')
     plt.close()
     
-    np.save(arr=labeled, file='/media/sda/data/labeled/F20_11/'+file[19:]+'_labeled.npy')
+    np.save(arr=labeled, file='/media/sda/data/labeled/F20_11/'+file[18:]+'_labeled.npy')
     del img, zim, labeled
     print(file, 'processing complete')
 
 
 if __name__=='__main__':
     
-    filenames = [f for f in glob.glob('benoitdata/F20_10_b/*')]
+    filenames = [f for f in glob.glob('benoitdata/F20-11/*')]
 
     pool = Pool(maxtasksperchild=10)
 

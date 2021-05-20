@@ -1,8 +1,9 @@
+/.data/
 /labeled/
 *.png
 *.pdf
-__pycache__/
-benoitdata/
-bigdata/
-SCANS/
-.ipynb_checkpoints/
+/__pycache__/
+/benoitdata/
+/bigdata/
+/SCANS/
+/.ipynb_checkpoints/
