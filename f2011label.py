@@ -34,6 +34,7 @@ def multi_figures(file):
     labeled = helpers.remove_data_based_on_radius(labeled, -1)
 
     fig, ax = helpers.plot_image(img, cmap='Greys')
+#     ax.imshow(labeled, cmap='Purples_r', alpha=0.5)
     ax.imshow(labeled, cmap='Purples_r', alpha=0.5)
     fig.savefig('/media/sda/data/labeled/F20_11/'+file[18:]+'_labeled.png', dpi=300, bbox_inches='tight')
     plt.close()

@@ -1,3 +1,4 @@
+*.gif
 *.pt
 /.data/
 /labeled/
